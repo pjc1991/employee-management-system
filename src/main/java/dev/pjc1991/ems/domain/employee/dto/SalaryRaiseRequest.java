@@ -1,4 +1,4 @@
-package dev.pjc1991.ems.employee.dto;
+package dev.pjc1991.ems.domain.employee.dto;
 
 import lombok.Getter;
 import lombok.Setter;

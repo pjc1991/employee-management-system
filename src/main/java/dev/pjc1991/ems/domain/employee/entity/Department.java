@@ -1,4 +1,4 @@
-package dev.pjc1991.ems.employee.entity;
+package dev.pjc1991.ems.domain.employee.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

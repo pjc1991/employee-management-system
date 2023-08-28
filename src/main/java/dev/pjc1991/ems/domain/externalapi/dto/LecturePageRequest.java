@@ -1,4 +1,4 @@
-package dev.pjc1991.ems.externalapi.dto;
+package dev.pjc1991.ems.domain.externalapi.dto;
 
 import dev.pjc1991.ems.dto.PageRequestImpl;
 import org.springframework.data.domain.PageRequest;

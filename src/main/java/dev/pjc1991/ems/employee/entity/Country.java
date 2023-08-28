@@ -7,14 +7,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "countries")
 @Getter
 public class Country {
     @Id
-    @Size(max = 2)
-    @Column(name = "country_id", nullable = false, length = 2)
+    @Column(name = "country_id", nullable = false, columnDefinition = "char(2)")
     private String countryId;
 
     @Size(max = 40)

@@ -15,7 +15,7 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "department_id", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
     @Size(max = 30)
     @NotNull

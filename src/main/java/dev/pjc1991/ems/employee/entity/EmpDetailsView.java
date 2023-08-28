@@ -5,24 +5,25 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Immutable;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Mapping for DB view
  */
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Immutable
 @Entity
 @Table(name = "emp_details_view")
 public class EmpDetailsView {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "employee_id", columnDefinition = "int UNSIGNED not null")
-    private Long employeeId;
+    private Integer employeeId;
 
     @Size(max = 10)
     @NotNull
@@ -30,13 +31,13 @@ public class EmpDetailsView {
     private String jobId;
 
     @Column(name = "manager_id", columnDefinition = "int UNSIGNED")
-    private Long managerId;
+    private Integer managerId;
 
     @Column(name = "department_id", columnDefinition = "int UNSIGNED")
-    private Long departmentId;
+    private Integer departmentId;
 
     @Column(name = "location_id", columnDefinition = "int UNSIGNED")
-    private Long locationId;
+    private Integer locationId;
 
     @Size(max = 2)
     @NotNull

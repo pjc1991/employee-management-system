@@ -14,7 +14,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "location_id", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
     @Size(max = 40)
     @Column(name = "street_address", length = 40)

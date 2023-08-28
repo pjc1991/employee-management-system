@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Region {
     @Id
     @Column(name = "region_id", columnDefinition = "int UNSIGNED not null")
-    private Long id;
+    private Integer id;
 
     @Size(max = 25)
     @Column(name = "region_name", length = 25)

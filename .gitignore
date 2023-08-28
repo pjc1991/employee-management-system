@@ -38,3 +38,6 @@ out/
 
 ### JPA Buddy ###
 .jpb/
+
+### Redis Dump ###
+dump.rdb

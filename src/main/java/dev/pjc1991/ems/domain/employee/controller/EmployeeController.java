@@ -45,7 +45,7 @@ public class EmployeeController {
         return employeeService.getDepartmentResponseById(id);
     }
 
-    @PostMapping("/department/{id}/raise")
+    @PutMapping("/department/{id}/raise")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<EmployeeResponse> raiseSalaryResponseByDepartmentId(@PathVariable Integer id, @RequestBody SalaryRaiseRequest request) {

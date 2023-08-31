@@ -19,8 +19,11 @@ public class LectureResponse {
     public LectureResponse(LectureRetrofitResponse retrofitResponse) {
         this.id = retrofitResponse.getId();
         this.name = retrofitResponse.getName();
-        this.start = LocalDateTime.parse(retrofitResponse.getStart(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+        try {
+            this.start = LocalDateTime.parse(retrofitResponse.getStart(), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"));
+        } catch (Exception e) {
+            // ignore
+        }
         this.description = retrofitResponse.getShort_description();
     }
 }

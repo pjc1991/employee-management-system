@@ -3,6 +3,8 @@ package dev.pjc1991.ems.domain.employee.repository;
 import com.querydsl.core.QueryResults;
 import dev.pjc1991.ems.domain.employee.dto.EmployeeSearchPageRequest;
 import dev.pjc1991.ems.domain.employee.entity.JobHistory;
+ import dev.pjc1991.ems.domain.employee.entity.QDepartment;
+import dev.pjc1991.ems.domain.employee.entity.QJob;
 import dev.pjc1991.ems.domain.employee.entity.QJobHistory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,6 +25,9 @@ public class JobHistoryRepositoryCustom extends QuerydslRepositorySupport {
         QJobHistory jobHistory = QJobHistory.jobHistory;
 
         QueryResults<JobHistory> results = from(jobHistory)
+                .innerJoin(jobHistory.employee)
+                .innerJoin(jobHistory.department, QDepartment.department)
+                .innerJoin(jobHistory.job, QJob.job)
                 .where(jobHistory.employee.id.eq(request.getEmployeeId()))
                 .offset(request.getOffset())
                 .limit(request.getPageSize())

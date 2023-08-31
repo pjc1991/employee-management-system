@@ -2417,7 +2417,15 @@ VALUES (
 COMMIT;
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            102,
            STR_TO_DATE('13-Jan-1993', '%d-%M-%Y'),
            STR_TO_DATE('24-Jul-1998', '%d-%M-%Y'),
@@ -2426,7 +2434,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            101,
            STR_TO_DATE('21-Sep-1989', '%d-%M-%Y'),
            STR_TO_DATE('27-Oct-1993', '%d-%M-%Y'),
@@ -2435,7 +2451,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            101,
            STR_TO_DATE('28-Oct-1993','%d-%M-%Y'),
            STR_TO_DATE('15-Mar-1997','%d-%M-%Y'),
@@ -2444,7 +2468,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            201,
            STR_TO_DATE('27-Feb-1996','%d-%M-%Y'),
            STR_TO_DATE('19-Dec-1999','%d-%M-%Y'),
@@ -2453,7 +2485,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            114,
            STR_TO_DATE('24-Mar-1998','%d-%M-%Y'),
            STR_TO_DATE('31-Dec-1999','%d-%M-%Y'),
@@ -2462,7 +2502,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            122,
            STR_TO_DATE('01-Jan-1999','%d-%M-%Y'),
            STR_TO_DATE('31-Dec-1999','%d-%M-%Y'),
@@ -2471,7 +2519,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            200,
            STR_TO_DATE('17-Sep-1987','%d-%M-%Y'),
            STR_TO_DATE('17-Jun-1993','%d-%M-%Y'),
@@ -2480,7 +2536,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            176,
            STR_TO_DATE('24-Mar-1998','%d-%M-%Y'),
            STR_TO_DATE('31-Dec-1998','%d-%M-%Y'),
@@ -2489,7 +2553,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            176,
            STR_TO_DATE('01-Jan-1999','%d-%M-%Y'),
            STR_TO_DATE('31-Dec-1999','%d-%M-%Y'),
@@ -2498,7 +2570,15 @@ VALUES (
        );
 
 INSERT INTO job_history
+(
+    employee_id
+    , start_date
+    , end_date
+    , job_id
+    , department_id
+)
 VALUES (
+
            200,
            STR_TO_DATE('01-Jul-1994','%d-%M-%Y'),
            STR_TO_DATE('31-Dec-1998','%d-%M-%Y'),

@@ -182,7 +182,7 @@ class EmployeeServiceTest {
     void raiseSalaryByDepartmentId() {
         // given
         Department department = departmentRepository.findById(TEST_DEPARTMENT_ID).orElseThrow();
-        Set<Employee> before = department.getEmployees();
+        List<Employee> before = department.getEmployees();
         HashMap<Integer, BigDecimal> salaryMap = before.stream().map(employee -> Map.entry(employee.getId(), employee.getSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
 
         int raisePercentage = 10;
@@ -193,7 +193,7 @@ class EmployeeServiceTest {
 
 
         // when
-        Set<Employee> employees = employeeService.raiseSalaryByDepartmentId(request);
+        List<Employee> employees = employeeService.raiseSalaryByDepartmentId(request);
 
         // then
         employees.forEach(employee -> {
@@ -219,7 +219,7 @@ class EmployeeServiceTest {
     void raiseSalaryResponseByDepartmentId() {
         // given
         Department department = departmentRepository.findById(TEST_DEPARTMENT_ID).orElseThrow();
-        Set<Employee> before = department.getEmployees();
+        List<Employee> before = department.getEmployees();
         HashMap<Integer, BigDecimal> salaryMap = before.stream().map(employee -> Map.entry(employee.getId(), employee.getSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
 
         Set<Job> jobs = before.stream().map(Employee::getJob).collect(Collectors.toSet());
@@ -233,7 +233,7 @@ class EmployeeServiceTest {
         request.setRaisePercentage(raisePercentage);
 
         // when
-        Set<EmployeeResponse> responses = employeeService.raiseSalaryResponseByDepartmentId(request);
+        List<EmployeeResponse> responses = employeeService.raiseSalaryResponseByDepartmentId(request);
 
         // then
 

@@ -252,7 +252,7 @@ curl -X GET http://52.10.69.37:8080/department/100
       "managerName": "Neena Kochhar",
       "departmentId": 100,
       "departmentName": "Finance"
-    },
+    }
   ]
 }
 
@@ -321,7 +321,11 @@ curl -X GET http://52.10.69.37:8080/location/1000
 #### 요청 
 
 ```shell
-curl -X PUT http://52.10.69.37:8080/department/100/raise
+curl -X PUT http://52.10.69.37:8080/department/100/raise \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "raisePercentage": 10
+    }'
 ``` 
 
 - Method: PUT
@@ -376,7 +380,19 @@ curl -X PUT http://52.10.69.37:8080/department/100/raise
 #### 요청 
 
 ```shell
-curl -X PUT http://52.10.69.37:8080/employee/101
+curl -X PUT http://52.10.69.37:8080/employee/101 \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "NKOCHHAR",
+    "phoneNumber": "515.123.4568",
+    "hireDate": "1989-09-21",
+    "jobId": "AD_VP",
+    "salary": 17000.00,
+    "managerId": 100,
+    "departmentId": 90
+    }'
 ```
 
 - Method: PUT
@@ -438,7 +454,7 @@ curl -X PUT http://52.10.69.37:8080/employee/101
 #### 요청 
 
 ```shell
-curl -X GET http://52.10.69.37:8080/kmooc?page=1
+curl -X GET http://52.10.69.37:8080/kmooc
 ```
 
 - Method: GET

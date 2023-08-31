@@ -262,10 +262,7 @@ class EmployeeServiceTest {
         Employee before = employeeRepository.findById(TEST_EMPLOYEE_ID).orElseThrow();
         log.info("Before Employee: " + before);
 
-        EmployeeUpdateRequest request = new EmployeeUpdateRequest();
-        request.setId(TEST_EMPLOYEE_ID);
-        request.setFirstName("John");
-        request.setLastName("Doe");
+        EmployeeUpdateRequest request = getEmployeeUpdateRequest();
 
         // when
         Employee employee = employeeService.updateEmployee(request);
@@ -273,7 +270,15 @@ class EmployeeServiceTest {
         // then
         log.info("Employee: " + employee.toString());
         assertEquals(TEST_EMPLOYEE_ID, employee.getId());
-
+        assertEquals(request.getFirstName(), employee.getFirstName());
+        assertEquals(request.getLastName(), employee.getLastName());
+        assertEquals(request.getEmail(), employee.getEmail());
+        assertEquals(request.getPhoneNumber(), employee.getPhoneNumber());
+        assertEquals(request.getJobId(), employee.getJob().getJobId());
+        assertEquals(request.getSalary(), employee.getSalary());
+        assertEquals(request.getCommissionPct(), employee.getCommissionPct());
+        assertEquals(request.getManagerId(), employee.getManager().getId());
+        assertEquals(request.getDepartmentId(), employee.getDepartment().getId());
     }
 
     @Test
@@ -282,16 +287,40 @@ class EmployeeServiceTest {
         EmployeeResponse beforeResponse = new EmployeeResponse(employeeRepository.findById(TEST_EMPLOYEE_ID).orElseThrow());
         log.info("Before Employee Response: " + beforeResponse);
 
-        EmployeeUpdateRequest request = new EmployeeUpdateRequest();
-        request.setId(TEST_EMPLOYEE_ID);
-        request.setFirstName("John");
-        request.setLastName("Doe");
+        EmployeeUpdateRequest request = getEmployeeUpdateRequest();
+
 
         // when
         EmployeeResponse response = employeeService.updateEmployeeResponse(request);
 
         // then
-        log.info("Employee Response: " + response.toString());
+        log.info("Employee Response: " + response);
         assertEquals(TEST_EMPLOYEE_ID, response.getId());
+        assertEquals(request.getFirstName(), response.getFirstName());
+        assertEquals(request.getLastName(), response.getLastName());
+        assertEquals(request.getEmail(), response.getEmail());
+        assertEquals(request.getPhoneNumber(), response.getPhoneNumber());
+        assertEquals(request.getJobId(), response.getJobId());
+        assertEquals(request.getSalary(), response.getSalary());
+        assertEquals(request.getCommissionPct(), response.getCommissionPct());
+        assertEquals(request.getManagerId(), response.getManagerId());
+        assertEquals(request.getDepartmentId(), response.getDepartmentId());
+    }
+
+
+    private static EmployeeUpdateRequest getEmployeeUpdateRequest() {
+        EmployeeUpdateRequest request = new EmployeeUpdateRequest();
+        request.setId(TEST_EMPLOYEE_ID);
+        request.setFirstName("John");
+        request.setLastName("Doe");
+        request.setEmail("new@email.com");
+        request.setPhoneNumber("1234567890");
+        request.setJobId("AD_PRES");
+        request.setSalary(BigDecimal.valueOf(30000));
+        request.setCommissionPct(BigDecimal.valueOf(10));
+        request.setManagerId(110);
+        request.setDepartmentId(10);
+
+        return request;
     }
 }

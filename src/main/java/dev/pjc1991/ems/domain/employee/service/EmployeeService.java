@@ -7,7 +7,7 @@ import dev.pjc1991.ems.domain.employee.entity.Employee;
 import dev.pjc1991.ems.domain.employee.entity.JobHistory;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
+import java.util.Set;
 
 public interface EmployeeService {
 
@@ -21,10 +21,18 @@ public interface EmployeeService {
 
     Location getLocationById(Integer id);
 
+    LocationResponse getLocationResponseById(Integer id);
+
     Department getDepartmentById(Integer id);
 
-    List<Employee> raiseSalaryByDepartmentId(SalaryRaiseRequest request);
+    DepartmentResponse getDepartmentResponseById(Integer id);
+
+    Set<Employee> raiseSalaryByDepartmentId(SalaryRaiseRequest request);
+
+    Set<EmployeeResponse> raiseSalaryResponseByDepartmentId(SalaryRaiseRequest request);
 
     Employee updateEmployee(EmployeeUpdateRequest request);
+
+    EmployeeResponse updateEmployeeResponse(EmployeeUpdateRequest request);
 
 }

@@ -35,7 +35,7 @@ public class EmployeeResponse {
         this.salary = employee.getSalary();
         this.commissionPct = employee.getCommissionPct();
         this.managerName = employee.getManager() != null ? employee.getManager().getFirstName() + " " + employee.getManager().getLastName() : null;
-
+        this.departmentName = employee.getDepartment() != null ? employee.getDepartment().getDepartmentName() : null;
     }
 
     public static Set<EmployeeResponse> from(Set<Employee> employees) {

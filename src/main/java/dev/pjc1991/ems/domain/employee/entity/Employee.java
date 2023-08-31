@@ -64,6 +64,48 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    public void updateEmployee(EmployeeUpdateRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Request cannot be null");
+        }
+
+        if (request.getFirstName() != null){
+            this.firstName = request.getFirstName();
+        }
+
+        if (request.getLastName() != null){
+            this.lastName = request.getLastName();
+        }
+
+        if (request.getEmail() != null){
+            this.email = request.getEmail();
+        }
+
+        if (request.getPhoneNumber() != null){
+            this.phoneNumber = request.getPhoneNumber();
+        }
+
+        if (request.getSalary() != null){
+            this.salary = this.setSalary(request.getSalary());
+        }
+
+        if (request.getCommissionPct() != null){
+            this.commissionPct = BigDecimal.valueOf(request.getCommissionPct());
+        }
+
+        if (request.getJobId() != null) {
+            this.job = request.getJob();
+        }
+
+        if (request.getManagerId() != null) {
+            this.manager = request.getManager();
+        }
+
+        if (request.getDepartmentId() != null) {
+            this.department = request.getDepartment();
+        }
+    }
+
 
     public void raiseSalary(Integer raisePercentage) {
         BigDecimal maxSalary = this.job.getMaxSalary();
@@ -89,17 +131,6 @@ public class Employee {
         this.salary = newSalary.compareTo(maxSalary) > 0 ? maxSalary : newSalary;
     }
 
-    public void updateEmployee(EmployeeUpdateRequest request) {
-        this.firstName = request.getFirstName();
-        this.lastName = request.getLastName();
-        this.email = request.getEmail();
-        this.phoneNumber = request.getPhoneNumber();
-        this.job = request.getJob();
-        this.manager = request.getManager();
-        this.department = request.getDepartment();
-        this.salary = this.setSalary(request.getSalary());
-        this.commissionPct = BigDecimal.valueOf(request.getCommissionPct());
-    }
 
     private BigDecimal setSalary(Integer salary) {
         if (salary == null) {
@@ -119,4 +150,5 @@ public class Employee {
 
         return BigDecimal.valueOf(salary);
     }
+
 }

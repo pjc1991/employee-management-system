@@ -39,5 +39,13 @@ out/
 ### JPA Buddy ###
 .jpb/
 
+### MySQL ###
+/mysql/
+
 ### Redis Dump ###
 dump.rdb
+
+### Credentials ###
+/src/main/resources/application-secret.properties
+/src/main/resources/application-prod.properties
+

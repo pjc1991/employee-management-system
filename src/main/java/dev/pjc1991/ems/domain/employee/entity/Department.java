@@ -49,8 +49,6 @@ public class Department {
             throw new IllegalArgumentException("Department does not have a manager");
         }
 
-        this.employees.forEach(employee -> {
-            employee.raiseSalary(raisePercentage);
-        });
+        this.employees.forEach(employee -> employee.raiseSalary(raisePercentage));
     }
 }

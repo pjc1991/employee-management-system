@@ -86,7 +86,7 @@ public class Employee {
         }
 
         if (request.getSalary() != null){
-            this.salary = request.getSalary();
+            this.setSalary(request.getSalary());
         }
 
         if (request.getCommissionPct() != null){
@@ -132,7 +132,7 @@ public class Employee {
     }
 
 
-    private BigDecimal setSalary(Integer salary) {
+    private void setSalary(BigDecimal salary) {
         if (salary == null) {
             throw new IllegalArgumentException("Salary cannot be null");
         }
@@ -140,15 +140,15 @@ public class Employee {
         BigDecimal maxSalary = this.job.getMaxSalary();
         BigDecimal minSalary = this.job.getMinSalary();
 
-        if (salary.compareTo(maxSalary.intValue()) > 0) {
+        if (salary.compareTo(maxSalary) > 0) {
             throw new IllegalArgumentException("Salary cannot be greater than the maximum salary for the job");
         }
 
-        if (salary.compareTo(minSalary.intValue()) < 0) {
+        if (salary.compareTo(minSalary) < 0) {
             throw new IllegalArgumentException("Salary cannot be less than the minimum salary for the job");
         }
 
-        return BigDecimal.valueOf(salary);
+        this.salary = salary;
     }
 
 }

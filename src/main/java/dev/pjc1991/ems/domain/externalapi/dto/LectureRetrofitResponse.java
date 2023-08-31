@@ -1,15 +1,15 @@
 package dev.pjc1991.ems.domain.externalapi.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LecturePageRequest {
-    @JsonProperty("Page")
-    private int page;
-
+public class LectureRetrofitResponse {
+    private String id;
+    private String name;
+    private String start;
+    private String short_description;
 }

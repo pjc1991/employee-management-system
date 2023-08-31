@@ -13,12 +13,11 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
-@Profile("prod")
 @Slf4j
 @Configuration
 public class RetrofitConfig {
 
-    @Value("${kr.go.data.service.key}")
+    @Value("${kr.go.data.apis.service.key}")
     private String SERVICE_KEY;
 
     private static final String BASE_URL = "https://apis.data.go.kr";

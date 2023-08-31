@@ -1,10 +1,7 @@
 package dev.pjc1991.ems.domain.employee.service;
 
 import dev.pjc1991.ems.domain.employee.dto.*;
-import dev.pjc1991.ems.domain.employee.entity.Department;
-import dev.pjc1991.ems.domain.employee.entity.Employee;
-import dev.pjc1991.ems.domain.employee.entity.JobHistory;
-import dev.pjc1991.ems.domain.employee.entity.Location;
+import dev.pjc1991.ems.domain.employee.entity.*;
 import dev.pjc1991.ems.domain.employee.repository.DepartmentRepository;
 import dev.pjc1991.ems.domain.employee.repository.EmployeeRepository;
 import org.junit.jupiter.api.Test;
@@ -15,8 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -180,17 +181,37 @@ class EmployeeServiceTest {
     @Test
     void raiseSalaryByDepartmentId() {
         // given
+        Department department = departmentRepository.findById(TEST_DEPARTMENT_ID).orElseThrow();
+        Set<Employee> before = department.getEmployees();
+        HashMap<Integer, BigDecimal> salaryMap = before.stream().map(employee -> Map.entry(employee.getId(), employee.getSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
+
+        int raisePercentage = 10;
+
         SalaryRaiseRequest request = new SalaryRaiseRequest();
         request.setDepartmentId(TEST_DEPARTMENT_ID);
-        request.setRaisePercentage(10);
+        request.setRaisePercentage(raisePercentage);
+
 
         // when
         Set<Employee> employees = employeeService.raiseSalaryByDepartmentId(request);
 
         // then
         employees.forEach(employee -> {
-            log.info("Employee: " + employee.toString());
+            log.info("Employee: " + employee.getId());
+            BigDecimal maxSalary = employee.getJob().getMaxSalary();
+            BigDecimal minSalary = employee.getJob().getMinSalary();
+            BigDecimal salaryBefore = salaryMap.get(employee.getId());
+            BigDecimal salaryExpected = salaryBefore.multiply(BigDecimal.valueOf(1 + (raisePercentage / 100.0))).min(maxSalary).max(minSalary);
+            BigDecimal salary = employee.getSalary();
+            log.info("Max Salary: " + maxSalary);
+            log.info("Min Salary: " + minSalary);
+            log.info("Salary Before: " + salaryBefore);
+            log.info("Salary Expected: " + salaryExpected);
+            log.info("Salary: " + salary);
             assertEquals(TEST_DEPARTMENT_ID, employee.getDepartment().getId());
+            assertTrue(salary.compareTo(minSalary) >= 0);
+            assertTrue(salary.compareTo(maxSalary) <= 0);
+            assertEquals(salary, salaryExpected);
         });
     }
 
@@ -198,18 +219,40 @@ class EmployeeServiceTest {
     void raiseSalaryResponseByDepartmentId() {
         // given
         Department department = departmentRepository.findById(TEST_DEPARTMENT_ID).orElseThrow();
+        Set<Employee> before = department.getEmployees();
+        HashMap<Integer, BigDecimal> salaryMap = before.stream().map(employee -> Map.entry(employee.getId(), employee.getSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
+
+        Set<Job> jobs = before.stream().map(Employee::getJob).collect(Collectors.toSet());
+        HashMap<String, BigDecimal> maxSalaryMap = jobs.stream().map(job -> Map.entry(job.getJobId(), job.getMaxSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
+        HashMap<String, BigDecimal> minSalaryMap = jobs.stream().map(job -> Map.entry(job.getJobId(), job.getMinSalary())).collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue()), HashMap::putAll);
+
+        int raisePercentage = 10;
 
         SalaryRaiseRequest request = new SalaryRaiseRequest();
         request.setDepartmentId(TEST_DEPARTMENT_ID);
-        request.setRaisePercentage(10);
+        request.setRaisePercentage(raisePercentage);
 
         // when
         Set<EmployeeResponse> responses = employeeService.raiseSalaryResponseByDepartmentId(request);
 
         // then
+
         responses.forEach(response -> {
-            log.info("Employee Response: " + response.toString());
-            assertEquals(department.getDepartmentName(), response.getDepartmentName());
+            log.info("Employee: " + response.getId());
+            BigDecimal maxSalary = maxSalaryMap.get(response.getJobId());
+            BigDecimal minSalary = minSalaryMap.get(response.getJobId());
+            BigDecimal salaryBefore = salaryMap.get(response.getId());
+            BigDecimal salaryExpected = salaryBefore.multiply(BigDecimal.valueOf(1 + (raisePercentage / 100.0))).min(maxSalary).max(minSalary);
+            BigDecimal salary = response.getSalary();
+            log.info("Max Salary: " + maxSalary);
+            log.info("Min Salary: " + minSalary);
+            log.info("Salary Before: " + salaryBefore);
+            log.info("Salary Expected: " + salaryExpected);
+            log.info("Salary: " + salary);
+            assertEquals(TEST_DEPARTMENT_ID, response.getDepartmentId());
+            assertTrue(salary.compareTo(minSalary) >= 0);
+            assertTrue(salary.compareTo(maxSalary) <= 0);
+            assertEquals(salary, salaryExpected);
         });
     }
 

@@ -1,5 +1,6 @@
 package dev.pjc1991.ems.domain.employee.entity;
 
+import dev.pjc1991.ems.domain.employee.dto.EmployeeUpdateRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -64,4 +65,58 @@ public class Employee {
     private Department department;
 
 
+    public void raiseSalary(Integer raisePercentage) {
+        BigDecimal maxSalary = this.job.getMaxSalary();
+        BigDecimal minSalary = this.job.getMinSalary();
+
+        if (raisePercentage == null) {
+            throw new IllegalArgumentException("Raise percentage cannot be null");
+        }
+
+        if (raisePercentage < 0) {
+            throw new IllegalArgumentException("Raise percentage cannot be negative");
+        }
+
+        if (this.salary.compareTo(maxSalary) >= 0) {
+            throw new IllegalArgumentException("Employee salary is already at the maximum");
+        }
+
+        if (this.salary.compareTo(minSalary) < 0) {
+            throw new IllegalArgumentException("Employee salary is already at the minimum");
+        }
+
+        BigDecimal newSalary = this.salary.multiply(BigDecimal.valueOf(1 + (raisePercentage / 100.0)));
+        this.salary = newSalary.compareTo(maxSalary) > 0 ? maxSalary : newSalary;
+    }
+
+    public void updateEmployee(EmployeeUpdateRequest request) {
+        this.firstName = request.getFirstName();
+        this.lastName = request.getLastName();
+        this.email = request.getEmail();
+        this.phoneNumber = request.getPhoneNumber();
+        this.job = request.getJob();
+        this.manager = request.getManager();
+        this.department = request.getDepartment();
+        this.salary = this.setSalary(request.getSalary());
+        this.commissionPct = BigDecimal.valueOf(request.getCommissionPct());
+    }
+
+    private BigDecimal setSalary(Integer salary) {
+        if (salary == null) {
+            throw new IllegalArgumentException("Salary cannot be null");
+        }
+
+        BigDecimal maxSalary = this.job.getMaxSalary();
+        BigDecimal minSalary = this.job.getMinSalary();
+
+        if (salary.compareTo(maxSalary.intValue()) > 0) {
+            throw new IllegalArgumentException("Salary cannot be greater than the maximum salary for the job");
+        }
+
+        if (salary.compareTo(minSalary.intValue()) < 0) {
+            throw new IllegalArgumentException("Salary cannot be less than the minimum salary for the job");
+        }
+
+        return BigDecimal.valueOf(salary);
+    }
 }

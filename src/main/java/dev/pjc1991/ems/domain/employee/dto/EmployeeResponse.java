@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,6 +24,7 @@ public class EmployeeResponse {
     private BigDecimal commissionPct;
     private String managerName;
     private String departmentName;
+
     public EmployeeResponse(Employee employee) {
         this.id = employee.getId();
         this.firstName = employee.getFirstName();
@@ -34,5 +37,9 @@ public class EmployeeResponse {
         this.commissionPct = employee.getCommissionPct();
         this.managerName = employee.getManager() != null ? employee.getManager().getFirstName() + " " + employee.getManager().getLastName() : null;
 
+    }
+
+    public static Set<EmployeeResponse> from(Set<Employee> employees) {
+        return employees.stream().map(EmployeeResponse::new).collect(java.util.stream.Collectors.toSet());
     }
 }

@@ -1,6 +1,5 @@
 package dev.pjc1991.ems.domain.externalapi.retrofit;
 
-import dev.pjc1991.ems.domain.externalapi.dto.LecturePageRequest;
 import dev.pjc1991.ems.domain.externalapi.dto.LectureListRetrofitResponse;
 import dev.pjc1991.ems.domain.externalapi.dto.LectureRetrofitResponse;
 import retrofit2.Call;

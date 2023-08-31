@@ -49,7 +49,7 @@ class EmployeeServiceTest {
         // then
         assertEquals(randomEmployee.getId(), employee.getId());
 
-        log.info("Employee: " + employee.toString());
+        log.info("Employee: " + employee);
     }
 
     @Test
@@ -63,7 +63,7 @@ class EmployeeServiceTest {
         // then
         assertEquals(randomEmployee.getId(), response.getId());
 
-        log.info("Employee: " + response.toString());
+        log.info("Employee: " + response);
     }
 
 
@@ -221,7 +221,7 @@ class EmployeeServiceTest {
     void updateEmployee() {
         // given
         Employee before = employeeRepository.findById(TEST_EMPLOYEE_ID).orElseThrow();
-        log.info("Before Employee: " + before.toString());
+        log.info("Before Employee: " + before);
 
         EmployeeUpdateRequest request = new EmployeeUpdateRequest();
         request.setId(TEST_EMPLOYEE_ID);
@@ -241,7 +241,7 @@ class EmployeeServiceTest {
     void updateEmployeeResponse() {
         // given
         EmployeeResponse beforeResponse = new EmployeeResponse(employeeRepository.findById(TEST_EMPLOYEE_ID).orElseThrow());
-        log.info("Before Employee Response: " + beforeResponse.toString());
+        log.info("Before Employee Response: " + beforeResponse);
 
         EmployeeUpdateRequest request = new EmployeeUpdateRequest();
         request.setId(TEST_EMPLOYEE_ID);

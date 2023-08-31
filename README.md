@@ -252,7 +252,7 @@ curl -X GET http://52.10.69.37:8080/department/100
       "managerName": "Neena Kochhar",
       "departmentId": 100,
       "departmentName": "Finance"
-    },
+    }
   ]
 }
 

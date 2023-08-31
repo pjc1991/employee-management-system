@@ -18,10 +18,13 @@ public class EmployeeResponse {
     private String email;
     private String phoneNumber;
     private LocalDate hireDate;
+    private String jobId;
     private String jobTitle;
     private BigDecimal salary;
     private BigDecimal commissionPct;
+    private Integer managerId;
     private String managerName;
+    private Integer departmentId;
     private String departmentName;
 
     public EmployeeResponse(Employee employee) {
@@ -31,10 +34,13 @@ public class EmployeeResponse {
         this.email = employee.getEmail();
         this.phoneNumber = employee.getPhoneNumber();
         this.hireDate = employee.getHireDate();
+        this.jobId = employee.getJob().getJobId();
         this.jobTitle = employee.getJob().getJobTitle();
         this.salary = employee.getSalary();
         this.commissionPct = employee.getCommissionPct();
+        this.managerId = employee.getManager() != null ? employee.getManager().getId() : null;
         this.managerName = employee.getManager() != null ? employee.getManager().getFirstName() + " " + employee.getManager().getLastName() : null;
+        this.departmentId = employee.getDepartment() != null ? employee.getDepartment().getId() : null;
         this.departmentName = employee.getDepartment() != null ? employee.getDepartment().getDepartmentName() : null;
     }
 

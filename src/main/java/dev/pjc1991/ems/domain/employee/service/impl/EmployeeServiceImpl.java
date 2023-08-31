@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -85,7 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Set<Employee> raiseSalaryByDepartmentId(SalaryRaiseRequest request) {
+    public List<Employee> raiseSalaryByDepartmentId(SalaryRaiseRequest request) {
         Department department = departmentRepository.findById(request.getDepartmentId()).orElseThrow(
                 () -> new IllegalArgumentException("Department does not exist")
         );
@@ -96,11 +97,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Set<EmployeeResponse> raiseSalaryResponseByDepartmentId(SalaryRaiseRequest request) {
+    public List<EmployeeResponse> raiseSalaryResponseByDepartmentId(SalaryRaiseRequest request) {
         return this.raiseSalaryByDepartmentId(request)
                 .stream()
                 .map(EmployeeResponse::new)
-                .collect(java.util.stream.Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
 

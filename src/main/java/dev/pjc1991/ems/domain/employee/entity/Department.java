@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -29,7 +29,7 @@ public class Department {
     private Employee manager;
 
     @OneToMany(mappedBy = "department")
-    private Set<Employee> employees;
+    private List<Employee> employees;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")

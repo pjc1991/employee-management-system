@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
+ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -48,7 +48,7 @@ public class EmployeeController {
     @PostMapping("/department/{id}/raise")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public Set<EmployeeResponse> raiseSalaryResponseByDepartmentId(@PathVariable Integer id, @RequestBody SalaryRaiseRequest request) {
+    public List<EmployeeResponse> raiseSalaryResponseByDepartmentId(@PathVariable Integer id, @RequestBody SalaryRaiseRequest request) {
         request.setDepartmentId(id);
         return employeeService.raiseSalaryResponseByDepartmentId(request);
     }

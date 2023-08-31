@@ -41,3 +41,6 @@ out/
 
 ### Redis Dump ###
 dump.rdb
+
+### Credentials ###
+/src/main/resources/application-secret.properties

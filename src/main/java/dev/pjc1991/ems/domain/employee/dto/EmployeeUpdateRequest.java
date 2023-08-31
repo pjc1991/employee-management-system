@@ -6,6 +6,8 @@ import dev.pjc1991.ems.domain.employee.entity.Job;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 public class EmployeeUpdateRequest {
@@ -15,13 +17,13 @@ public class EmployeeUpdateRequest {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private Integer jobId;
+    private String jobId;
     private Job job;
     private Integer managerId;
     private Employee manager;
     private Integer departmentId;
     private Department department;
-    private Integer salary;
-    private Integer commissionPct;
+    private BigDecimal salary;
+    private BigDecimal commissionPct;
 
 }

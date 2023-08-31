@@ -86,11 +86,11 @@ public class Employee {
         }
 
         if (request.getSalary() != null){
-            this.salary = this.setSalary(request.getSalary());
+            this.salary = request.getSalary();
         }
 
         if (request.getCommissionPct() != null){
-            this.commissionPct = BigDecimal.valueOf(request.getCommissionPct());
+            this.commissionPct = request.getCommissionPct();
         }
 
         if (request.getJobId() != null) {

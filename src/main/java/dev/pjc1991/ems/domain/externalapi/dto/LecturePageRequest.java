@@ -10,6 +10,6 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LecturePageRequest {
     @JsonProperty("Page")
-    private int page;
+    private int page = 1;
 
 }

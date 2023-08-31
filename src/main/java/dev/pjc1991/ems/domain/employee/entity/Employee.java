@@ -119,16 +119,9 @@ public class Employee {
             throw new IllegalArgumentException("Raise percentage cannot be negative");
         }
 
-        if (this.salary.compareTo(maxSalary) >= 0) {
-            throw new IllegalArgumentException("Employee salary is already at the maximum");
-        }
-
-        if (this.salary.compareTo(minSalary) < 0) {
-            throw new IllegalArgumentException("Employee salary is already at the minimum");
-        }
-
         BigDecimal newSalary = this.salary.multiply(BigDecimal.valueOf(1 + (raisePercentage / 100.0)));
-        this.salary = newSalary.compareTo(maxSalary) > 0 ? maxSalary : newSalary;
+        newSalary = newSalary.max(minSalary).min(maxSalary);
+        this.salary = newSalary;
     }
 
 

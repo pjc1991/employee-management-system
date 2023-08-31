@@ -18,20 +18,18 @@ Oracle DB 의 예시 테이블을 이용하여 직원 관리 시스템을 개발
 
 - Java 17
 - Spring Boot 
-- Spring Boot Docker Compose
 - Spring Data JPA
-- Spring Data Redis
 - QueryDSL
 - Spring Security
 - JUnit 5
 - MySQL
-- Redis
-- Docker
-- Docker Compose
 
 ## 프로젝트 실행 방법
 
-작업 중입니다. 
+### 빌드 
+```shell
+./gradlew clean build
+```
 
 ## 도메인 설계
 

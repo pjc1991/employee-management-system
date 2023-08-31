@@ -81,9 +81,7 @@ class EmployeeServiceTest {
         Page<JobHistory> page = employeeService.getJobHistoryByEmployeeId(request);
 
         // then
-        page.getContent().forEach(jobHistory -> {
-            log.info("Job History: {} from {} to {}", jobHistory.getJob().getJobTitle(), jobHistory.getStartDate(), jobHistory.getEndDate());
-        });
+        page.getContent().forEach(jobHistory -> log.info("Job History : {} from {} to {}", jobHistory.getJob().getJobTitle(), jobHistory.getStartDate(), jobHistory.getEndDate()));
 
         log.info("total elements: " + page.getTotalElements());
         log.info("total pages: " + page.getTotalPages());
@@ -110,9 +108,7 @@ class EmployeeServiceTest {
         Page<JobHistoryResponse> page = employeeService.getJobHistoryResponseByEmployeeId(request);
 
         // then
-        page.getContent().forEach(jobHistory -> {
-            log.info("Job History Response : {} from {} to {}", jobHistory.getJobTitle(), jobHistory.getStartDate(), jobHistory.getEndDate());
-        });
+        page.getContent().forEach(jobHistory -> log.info("Job History Response : {} from {} to {}", jobHistory.getJobTitle(), jobHistory.getStartDate(), jobHistory.getEndDate()));
 
         log.info("total elements: " + page.getTotalElements());
         log.info("total pages: " + page.getTotalPages());

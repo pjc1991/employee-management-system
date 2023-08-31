@@ -6,15 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "job_history")
 public class JobHistory {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull

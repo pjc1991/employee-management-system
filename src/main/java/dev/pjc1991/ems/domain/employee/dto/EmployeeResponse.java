@@ -6,7 +6,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -44,7 +45,7 @@ public class EmployeeResponse {
         this.departmentName = employee.getDepartment() != null ? employee.getDepartment().getDepartmentName() : null;
     }
 
-    public static Set<EmployeeResponse> from(Set<Employee> employees) {
-        return employees.stream().map(EmployeeResponse::new).collect(java.util.stream.Collectors.toSet());
+    public static List<EmployeeResponse> from(List<Employee> employees) {
+        return employees.stream().map(EmployeeResponse::new).collect(Collectors.toList());
     }
 }

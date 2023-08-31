@@ -64,11 +64,13 @@ CREATE TABLE employees (
 );
 
 CREATE TABLE job_history (
+                             id INT (11) UNSIGNED NOT NULL AUTO_INCREMENT,
                              employee_id INT (11) UNSIGNED NOT NULL,
                              start_date DATE NOT NULL,
                              end_date DATE NOT NULL,
                              job_id VARCHAR(10) NOT NULL,
-                             department_id INT (11) UNSIGNED NOT NULL
+                             department_id INT (11) UNSIGNED NOT NULL,
+                             PRIMARY KEY (id)
 );
 
 ALTER TABLE job_history ADD UNIQUE INDEX (
